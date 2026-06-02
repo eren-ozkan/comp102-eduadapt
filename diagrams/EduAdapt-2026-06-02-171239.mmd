@@ -1,0 +1,18 @@
+sequenceDiagram
+    title EduAdapt
+    actor Student
+    participant System as EduAdapt System
+
+    Student->>System: Login
+    System-->>Student: Display Dashboard
+    Student->>System: Select Course
+    Student->>System: Engage with Content
+    Student->>System: Submit Quiz
+
+    alt Score < 60
+        System-->>Student: Suggest: 'Review Material'
+    else 60 <= Score < 85
+        System-->>Student: Unlock next module (Same Level)
+    else Score >= 85
+        System-->>Student: Unlock next module, 'Level Up' & Award Badge
+    end

@@ -1,0 +1,68 @@
+---
+config:
+  layout: elk
+title: EduAdapt
+---
+classDiagram
+direction BT
+    class User {
+	    -String id
+	    -String name
+	    -String email
+	    -String password
+	    -String role
+	    +login()
+	    +register()
+    }
+
+    class Student {
+	    -String level
+	    -Array interests
+	    +engageWithCourse()
+	    +trackProgress()
+    }
+
+    class Teacher {
+	    +monitorStudents()
+	    +viewStudentProfile()
+    }
+
+    class Quiz {
+	    -Array questions
+	    +submitQuiz()
+    }
+
+    class Course {
+	    -String id
+	    -String title
+	    -String difficulty_level
+	    -String prerequisite_id
+	    +getCourseDetails()
+    }
+
+    class Progress {
+	    -Integer percent
+	    -Date last_accessed
+	    +updateProgress()
+    }
+
+    class Notification {
+	    -String message
+	    -Date sent_at
+	    +sendNotification()
+    }
+
+    class QuizResult {
+	    -Integer score
+	    -Date date
+	    +calculateScore()
+    }
+
+    User <|-- Student
+    User <|-- Teacher
+    Quiz "1" <-- "1" Course
+    Course "0..*" <-- "1" Student
+    Progress "0..*" <-- "1" Student
+    Notification "0..*" <-- "1" Student
+    QuizResult <-- Quiz
+    Course "0..*" <-- "1" Teacher
